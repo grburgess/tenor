@@ -1,0 +1,3 @@
+ignore:
+  - "tenor/test"
+  - "tenor/_version.py"
