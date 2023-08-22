@@ -6,5 +6,10 @@ __author__ = """J. Michael Burgess"""
 __email__ = 'jburgess@mpe.mpg.de'
 
 
-from .utils.configuration import tenor_config, show_configuration
-from .utils.logging import update_logging_level, activate_warnings, silence_warnings
+from .model import Hadronic, Leptonic, LogParabola
+from .utils.configuration import show_configuration, tenor_config
+from .utils.logging import (
+    activate_warnings,
+    silence_warnings,
+    update_logging_level,
+)

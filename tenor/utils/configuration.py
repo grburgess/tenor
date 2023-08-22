@@ -27,10 +27,19 @@ class Logging:
 
 
 @dataclass
+class Model:
+
+    leptonic_model: str = "lepto_ml_fuck"
+    hadronic_model: str = "hadronic_ml_fuck"
+    neutrino_model: str = "hadronic_nu_ml_fuck"
+
+
+
+@dataclass
 class tenorConfig:
 
     logging: Logging = Logging()
-
+    model: Model = Model()
 
 
 # Read the default config
