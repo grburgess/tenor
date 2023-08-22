@@ -4,7 +4,7 @@ select = C,E,F,W,B,B950
 extend-ignore = E203, E501
 #extend-ignore = F401 # ignore unused
 max-line-length = 88
-exclude = .git,docs,scripts,build,examples,mezzo/test,dist,versioneer.py,conftest.py
+exclude = .git,docs,scripts,build,examples,mezzo-soprano/test,dist,versioneer.py,conftest.py
 
 per-file-ignores =
      */*__init__.py:F401
