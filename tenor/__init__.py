@@ -13,3 +13,6 @@ from .utils.logging import (
     silence_warnings,
     update_logging_level,
 )
+
+from . import _version
+__version__ = _version.get_versions()['version']
