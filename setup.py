@@ -19,7 +19,7 @@ from setuptools import setup
 #     return paths
 
 
-#extra_files = find_data_files("tenor/data")
+#extra_files = find_data_files("mezzo/data")
 
 setup(
 
