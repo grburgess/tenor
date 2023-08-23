@@ -7,7 +7,7 @@ __email__ = 'jburgess@mpe.mpg.de'
 
 
 from .model import Hadronic, Leptonic, LogParabola
-from .utils.configuration import show_configuration, tenor_config
+from .utils.configuration import show_configuration, mezzo_soprano_config
 from .utils.logging import (
     activate_warnings,
     silence_warnings,

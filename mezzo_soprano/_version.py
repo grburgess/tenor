@@ -45,8 +45,8 @@ def get_config():
     cfg.VCS = "git"
     cfg.style = "pep440"
     cfg.tag_prefix = "v"
-    cfg.parentdir_prefix = "tenor-"
-    cfg.versionfile_source = "tenor/_version.py"
+    cfg.parentdir_prefix = "mezzo-soprano-"
+    cfg.versionfile_source = "mezzo-soprano/_version.py"
     cfg.verbose = False
     return cfg
 

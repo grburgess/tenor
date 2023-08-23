@@ -8,9 +8,9 @@ from rich.tree import Tree
 
 # Path to configuration
 
-_config_path = Path("~/.config/tenor/").expanduser()
+_config_path = Path("~/.config/mezzo_soprano/").expanduser()
 
-_config_name = Path("tenor_config.yml")
+_config_name = Path("mezzo_soprano_config.yml")
 
 _config_file = _config_path / _config_name
 
@@ -24,8 +24,6 @@ class Logging:
     level: str = "WARNING"
 
 
-
-
 @dataclass
 class Model:
 
@@ -34,24 +32,25 @@ class Model:
     neutrino_model: str = "hadronic_nu_ml_fuck"
 
 
-
 @dataclass
-class tenorConfig:
+class mezzo_sopranoConfig:
 
     logging: Logging = Logging()
     model: Model = Model()
 
 
 # Read the default config
-tenor_config: tenorConfig = OmegaConf.structured(tenorConfig)
+mezzo_soprano_config: mezzo_sopranoConfig = OmegaConf.structured(
+    mezzo_sopranoConfig
+)
 
 # Merge with local config if it exists
 if _config_file.is_file():
 
     _local_config = OmegaConf.load(_config_file)
 
-    tenor_config: tenorConfig = OmegaConf.merge(
-        tenor_config, _local_config
+    mezzo_soprano_config: mezzo_sopranoConfig = OmegaConf.merge(
+        mezzo_soprano_config, _local_config
     )
 
 # Write defaults if not
@@ -62,7 +61,7 @@ else:
 
     with _config_file.open("w") as f:
 
-        OmegaConf.save(config=tenor_config, f=f.name)
+        OmegaConf.save(config=mezzo_soprano_config, f=f.name)
 
 
 def recurse_dict(d, tree) -> None:
@@ -94,6 +93,6 @@ def show_configuration() -> None:
         "config", guide_style="bold medium_orchid", style="bold medium_orchid"
     )
 
-    recurse_dict(tenor_config, tree)
+    recurse_dict(mezzo_soprano_config, tree)
 
     return tree
