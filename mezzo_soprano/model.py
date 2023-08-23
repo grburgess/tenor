@@ -24,7 +24,7 @@ from netspec import EmulatorModel
 from threeML.catalogs.Fermi import ModelFrom3FGL, silence_warnings
 
 from .utils.logging import setup_logger
-from .utils.configuration import tenor_config
+from .utils.configuration import mezzo_soprano_config
 
 
 try:
@@ -210,7 +210,7 @@ class Leptonic(Model):
             4 * np.pi * cosmo.luminosity_distance(self._redshift).to("cm") ** 2
         ).value
 
-        self._spectrum = EmulatorModel(tenor_config.model.leptonic_model)
+        self._spectrum = EmulatorModel(mezzo_soprano_config.model.leptonic_model)
         self._spectrum.source_frame = False
         self._spectrum.divide_by_scale = False
 
@@ -325,7 +325,7 @@ class Hadronic(Model):
             4 * np.pi * cosmo.luminosity_distance(self._redshift).to("cm") ** 2
         ).value
 
-        self._spectrum = EmulatorModel(tenor_config.model.hadronic_model)
+        self._spectrum = EmulatorModel(mezzo_soprano_config.model.hadronic_model)
         self._spectrum.source_frame = False
         self._spectrum.divide_by_scale = False
 
@@ -384,7 +384,7 @@ class Hadronic(Model):
         if self._neutrino_source_name is not None:
 
             self._neutrino_spectrum = EmulatorModel(
-                tenor_config.model.neutrino_model
+                mezzo_soprano_config.model.neutrino_model
             )
             self._neutrino_spectrum.source_frame = False
             self._neutrino_spectrum.divide_by_scale = False

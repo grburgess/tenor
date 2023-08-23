@@ -6,7 +6,7 @@ from rich.console import Console
 from rich.logging import RichHandler
 from rich.theme import Theme
 
-from .configuration import tenor_config
+from .configuration import mezzo_soprano_config
 
 from .package_data import (
     get_path_of_data_file,
@@ -27,7 +27,7 @@ class LogFilter(object):
 
 # now create the developer handler that rotates every day and keeps
 # 10 days worth of backup
-tenor_dev_log_handler = handlers.TimedRotatingFileHandler(
+mezzo_soprano_dev_log_handler = handlers.TimedRotatingFileHandler(
     get_path_of_log_file("dev.log"), when="D", interval=1, backupCount=10
 )
 
@@ -38,22 +38,22 @@ _dev_formatter = logging.Formatter(
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 
-tenor_dev_log_handler.setFormatter(_dev_formatter)
-tenor_dev_log_handler.setLevel(logging.DEBUG)
+mezzo_soprano_dev_log_handler.setFormatter(_dev_formatter)
+mezzo_soprano_dev_log_handler.setLevel(logging.DEBUG)
 # now set up the usr log which will save the info
 
-tenor_usr_log_handler = handlers.TimedRotatingFileHandler(
+mezzo_soprano_usr_log_handler = handlers.TimedRotatingFileHandler(
     get_path_of_log_file("usr.log"), when="D", interval=1, backupCount=10
 )
 
-tenor_usr_log_handler.setLevel(logging.INFO)
+mezzo_soprano_usr_log_handler.setLevel(logging.INFO)
 
 # lots of info written out
 _usr_formatter = logging.Formatter(
     "%(asctime)s | %(levelname)s | %(message)s", datefmt="%Y-%m-%d %H:%M:%S"
 )
 
-tenor_usr_log_handler.setFormatter(_usr_formatter)
+mezzo_soprano_usr_log_handler.setFormatter(_usr_formatter)
 
 
 _theme = {}
@@ -85,10 +85,10 @@ _console_formatter = logging.Formatter(
 )
 
 
-tenor_console_log_handler = RichHandler(
-    level=tenor_config.logging.level, rich_tracebacks=True, markup=True, console=console
+mezzo_soprano_console_log_handler = RichHandler(
+    level=mezzo_soprano_config.logging.level, rich_tracebacks=True, markup=True, console=console
 )
-tenor_console_log_handler.setFormatter(_console_formatter)
+mezzo_soprano_console_log_handler.setFormatter(_console_formatter)
 
 
 warning_filter = LogFilter(logging.WARNING)
@@ -99,8 +99,8 @@ def silence_warnings():
     supress warning messages in console and file usr logs
     """
 
-    tenor_usr_log_handler.addFilter(warning_filter)
-    tenor_console_log_handler.addFilter(warning_filter)
+    mezzo_soprano_usr_log_handler.addFilter(warning_filter)
+    mezzo_soprano_console_log_handler.addFilter(warning_filter)
 
 
 def activate_warnings():
@@ -108,13 +108,13 @@ def activate_warnings():
     supress warning messages in console and file usr logs
     """
 
-    tenor_usr_log_handler.removeFilter(warning_filter)
-    tenor_console_log_handler.removeFilter(warning_filter)
+    mezzo_soprano_usr_log_handler.removeFilter(warning_filter)
+    mezzo_soprano_console_log_handler.removeFilter(warning_filter)
 
 
 def update_logging_level(level):
 
-    tenor_console_log_handler.setLevel(level)
+    mezzo_soprano_console_log_handler.setLevel(level)
 
 
 def setup_logger(name):
@@ -128,11 +128,11 @@ def setup_logger(name):
 
     # add the handlers
 
-    log.addHandler(tenor_dev_log_handler)
+    log.addHandler(mezzo_soprano_dev_log_handler)
 
-    log.addHandler(tenor_console_log_handler)
+    log.addHandler(mezzo_soprano_console_log_handler)
 
-    log.addHandler(tenor_usr_log_handler)
+    log.addHandler(mezzo_soprano_usr_log_handler)
 
     # we do not want to duplicate teh messages in the parents
     log.propagate = False

@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import List, Optional
 
@@ -35,8 +35,8 @@ class Model:
 @dataclass
 class mezzo_sopranoConfig:
 
-    logging: Logging = Logging()
-    model: Model = Model()
+    logging: Logging = field(default_factory=Logging)
+    model: Model = field(default_factory=Model)
 
 
 # Read the default config
