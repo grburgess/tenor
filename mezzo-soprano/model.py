@@ -206,12 +206,12 @@ class Leptonic(Model):
         super().__init__(source_name, redshift, ra, dec, lat_model, lat_source)
 
     def _create_spectrum(self) -> None:
-        factor = (1 + self._redshift) / (
+        factor = (1 + self._redshift)**2 / (
             4 * np.pi * cosmo.luminosity_distance(self._redshift).to("cm") ** 2
         ).value
 
         self._spectrum = EmulatorModel(tenor_config.model.leptonic_model)
-        self._spectrum.source_frame = True
+        self._spectrum.source_frame = False
         self._spectrum.divide_by_scale = False
 
         self._spectrum.K.fix = True
@@ -263,7 +263,7 @@ class Leptonic(Model):
         func.a_2.fix = True
         func.b_2.fix = True
 
-        factor = (1 + self._redshift) / (
+        factor = (1 + self._redshift)**2 / (
             4 * np.pi * cosmo.luminosity_distance(self._redshift).to("cm") ** 2
         ).value
 
@@ -321,12 +321,12 @@ class Hadronic(Model):
         )
 
     def _create_spectrum(self) -> None:
-        factor = (1 + self._redshift) / (
+        factor = (1 + self._redshift)**2 / (
             4 * np.pi * cosmo.luminosity_distance(self._redshift).to("cm") ** 2
         ).value
 
         self._spectrum = EmulatorModel(tenor_config.model.hadronic_model)
-        self._spectrum.source_frame = True
+        self._spectrum.source_frame = False
         self._spectrum.divide_by_scale = False
 
         self._spectrum.K.fix = True
@@ -386,7 +386,7 @@ class Hadronic(Model):
             self._neutrino_spectrum = EmulatorModel(
                 tenor_config.model.neutrino_model
             )
-            self._neutrino_spectrum.source_frame = True
+            self._neutrino_spectrum.source_frame = False
             self._neutrino_spectrum.divide_by_scale = False
 
     def _model_linking(self) -> None:
@@ -394,7 +394,7 @@ class Hadronic(Model):
         scale_func.b.fix = True
         scale_func.a.fix = True
 
-        factor = (1 + self._redshift) / (
+        factor = (1 + self._redshift)**2 / (
             4 * np.pi * cosmo.luminosity_distance(self._redshift).to("cm") ** 2
         ).value
 
